@@ -16,7 +16,7 @@ def count_rows_xlsx_file(file_path):
     return len(excel_data_df)
 
 
-def main():
+def run_process():
     for file in os.listdir():
         if file.endswith(".xlsx"):
             file_path = os.path.join(os.path.dirname(__file__), path, file)
@@ -29,6 +29,38 @@ def main():
     data_frame.to_csv(output_path, na_rep='Unkown')  # missing value save as Unknown
     data_frame.to_csv(output_path, float_format='%.2f')  # rounded to two decimals
     data_frame.to_csv(output_path, index=False)
+
+
+def start_command():
+    print("""
+ ##########    ##############     #######      ##########      ##############
+##                   ##         ##      ##     ##        ##          ##
+##                   ##        ##        ##    ##         ##         ##
+ #########           ##        ##        ##    ##       ##           ##
+         ##          ##        ############    #########             ##
+         ##          ##        ##        ##    ##       ##           ##
+##########           ##        ##        ##    ##         ##         ##
+
+                                            Excel File Reader (version 0.0.1)     
+        """)
+
+
+def end_command():
+    print("""
+##########    ## ##        ##    ##########
+##            ##   ##      ##    ##        ##
+##            ##     ##    ##    ##         ## 
+#########     ##       ##  ##    ##         ##
+##            ##        ## ##    ##         ##
+##            ##           ##    ##        ##
+##########    ##           ##    ########## 
+            """)
+
+
+def main():
+    start_command()
+    run_process()
+    end_command()
 
 
 if __name__ == '__main__':
