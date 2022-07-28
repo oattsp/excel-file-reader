@@ -1,7 +1,8 @@
 import os
 import pandas
+from generate_file import GenerateFile
 
-resultSet = []
+dataset = []
 
 # Folder Path
 path = "files"
@@ -21,14 +22,16 @@ def run_process():
         if file.endswith(".xlsx"):
             file_path = os.path.join(os.path.dirname(__file__), path, file)
             count = count_rows_xlsx_file(file_path)
-            resultSet.append({"file_name": file, "count": count})
+            dataset.append({"file_name": file, "count": count})
 
-    data_frame = pandas.DataFrame(resultSet)
-    output_path = os.path.join(os.path.dirname(__file__), "output", "report.csv")
-    data_frame.to_csv(output_path)
-    data_frame.to_csv(output_path, na_rep='Unkown')  # missing value save as Unknown
-    data_frame.to_csv(output_path, float_format='%.2f')  # rounded to two decimals
-    data_frame.to_csv(output_path, index=False)
+    GenerateFile.csv(dataset, "report.csv")
+    GenerateFile.xlsx(dataset, "report.xlsx")
+
+
+def main():
+    print("started process")
+    run_process()
+    print("end process")
 
 
 def start_command():
